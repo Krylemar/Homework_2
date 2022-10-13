@@ -4,10 +4,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Account {
-    String accNumber;
-    String currency;
-    String balance;
-    String type;
+    private String accNumber;
+    private String currency;
+    private String balance;
+    private String type;
 
     public Account(String accNumber, String currency, String balance, String type) {
         this.accNumber = accNumber;
@@ -62,15 +62,33 @@ public class Account {
         accounts[7] = new Account("3830","BGN","30604.59","Salary");
         accounts[8] = new Account("3852","RON","99637.47","Salary");
         accounts[9] = new Account("7408","EUR","37494.32","Current");
-        Map<String, List<Account>> accountMap = Arrays.stream(accounts).collect(Collectors.groupingBy(Account::getCurrency));
-        for (Map.Entry<String, List<Account>> pair : accountMap.entrySet()) {
-            double avg = 0f;
-            for(var acc : pair.getValue()) {
-                avg+= Double.parseDouble(acc.balance);
+        int accBGN=0,accEUR=0,accUSD=0,accCZK=0,accRON=0;
+        double sumBGN = 0d,sumEUR = 0d,sumUSD = 0d,sumCZK = 0d,sumRON = 0d;
+        for (int i = 0; i < 10; i++) {
+            switch (accounts[i].getCurrency()) {
+                case "BGN":
+                    sumBGN += Double.parseDouble(accounts[i].getBalance());
+                    accBGN++;
+                    break;
+                case "EUR":
+                    sumEUR += Double.parseDouble(accounts[i].getBalance());
+                    accEUR++;
+                    break;
+                case "USD":
+                    sumUSD += Double.parseDouble(accounts[i].getBalance());
+                    accUSD++;
+                    break;
+                case "CZK":
+                    sumCZK += Double.parseDouble(accounts[i].getBalance());
+                    accCZK++;
+                    break;
+                case "RON":
+                    sumRON += Double.parseDouble(accounts[i].getBalance());
+                    accRON++;
+                    break;
             }
-            avg /= pair.getValue().size();
-            System.out.printf(pair.getKey()+" Average: %.2f\n",avg);
         }
-
+        System.out.printf("BGN: %.2f \nEUR: %.2f \nUSD: %.2f \nCZK: %.2f \nRON: %.2f\n",
+                            sumBGN/accBGN,sumEUR/accEUR,sumUSD/accUSD,sumCZK/accCZK,sumRON/accRON);
     }
 }

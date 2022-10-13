@@ -1,11 +1,10 @@
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Student {
-    String fName;
-    String lName;
-    int facNo;
-    String major;
+    private String fName;
+    private String lName;
+    private int facNo;
+    private String major;
 
     public String getfName() {
         return fName;
@@ -64,7 +63,7 @@ public class Student {
 
     public static void main(String[] args) {
         Student[] students = new Student[10];
-        Scanner scanner = new Scanner(System.in);
+        String searchCriteria = "Popov";
         for (int i = 0; i < 10; i++) {
             students[i] = new Student();
         }
@@ -83,7 +82,7 @@ public class Student {
         students[4].setfName("Alexander"); students[4].setlName("Popov");
         students[4].setFacNo(19479543); students[4].setMajor("TTT");
 
-        students[5].setfName("Dinko"); students[5].setlName("Pingov");
+        students[5].setfName("Dinko"); students[5].setlName("Popov");
         students[5].setFacNo(19479893); students[5].setMajor("AT");
 
         students[6].setfName("Sofia"); students[6].setlName("Zhecheva");
@@ -99,7 +98,6 @@ public class Student {
         students[9].setFacNo(19165479); students[9].setMajor("KS");
 
         System.out.print("> ");
-        String searchCriteria = scanner.nextLine();
         for (int i = 0; i < 10; i++) {
             if (students[i].lName.equals(searchCriteria)) {
                 System.out.println(students[i].toString());

@@ -1,7 +1,7 @@
 public class Car {
-    String brand;
-    String registration;
-    String mileage;
+    private final String brand;
+    private final String registration;
+    private final String mileage;
 
     public Car(String brand, String registration, String mileage) {
         this.brand = brand;

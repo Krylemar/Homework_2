@@ -2,13 +2,13 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Apartment {
-    int floor;
-    int area;
-    int roomCount;
-    enum Direction {
+    private final int floor;
+    private final int area;
+    private final int roomCount;
+    private enum Direction {
         North, East,South,West
     }
-    Direction facingDirection;
+    private final Direction facingDirection;
 
     public Apartment(int floor, int area, int roomCount, Direction facingDirection) {
         this.floor = floor;
@@ -57,19 +57,23 @@ public class Apartment {
     }
 
     public static void main(String[] args) {
-        Random random = new Random();
         Apartment[] apartments = new Apartment[10];
+        apartments[0] = new Apartment(13,45,4,Direction.East);
+        apartments[1] = new Apartment(8,55,5,Direction.West);
+        apartments[2] = new Apartment(4,45,3,Direction.North);
+        apartments[3] = new Apartment(7,50,4,Direction.South);
+        apartments[4] = new Apartment(6,60,5,Direction.West);
+        apartments[5] = new Apartment(2,40,4,Direction.South);
+        apartments[6] = new Apartment(3,65,5,Direction.North);
+        apartments[7] = new Apartment(14,60,4,Direction.South);
+        apartments[8] = new Apartment(11,45,6,Direction.East);
+        apartments[9] = new Apartment(15,40,3,Direction.West);
         int biggestApartmentIndex = 0;
         for (int i = 0; i < 10; i++) {
-            int roomFloor = random.nextInt(15)+1; //etaj
-            int roomArea = random.nextInt(190)+10; //plosht
-            int roomCount = random.nextInt(9)+1; //broi stai
-            Apartment.Direction direction = Direction.values()[random.nextInt(Direction.values().length)];
-            apartments[i] = new Apartment(roomFloor,roomArea,roomCount,direction);
             if (apartments[biggestApartmentIndex].area < apartments[i].area){
                 biggestApartmentIndex = i;
             }
         }
-        System.out.println("Biggest apartment:\n"+ apartments[biggestApartmentIndex].toString());
+                System.out.println("Biggest apartment:\n"+ apartments[biggestApartmentIndex].toString());
     }
 }
